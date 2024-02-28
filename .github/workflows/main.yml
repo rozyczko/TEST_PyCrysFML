@@ -122,8 +122,8 @@ jobs:
 
       - name: Install PyCrysFML from local wheel (with dev extras)
         run: |
-          echo '### python3 -m pip install "${{ env.DIST_PACKAGE_NAME }}[dev]" --find-links=${{ env.PYCRYSFML_WHEEL }}'
-          python3 -m pip install "${{ env.DIST_PACKAGE_NAME }}[dev]" --find-links=${{ env.PYCRYSFML_WHEEL }}
+          echo '### python3 -m pip install "${{ env.PYCRYSFML_WHEEL }}/pycrysfml08-0.0.1a0-py3-none-any.whl"
+          python3 -m pip install "${{ env.PYCRYSFML_WHEEL }}/pycrysfml08-0.0.1a0-py3-none-any.whl"
 
       - name: Run tests
         run: pytest tests/ -vv
