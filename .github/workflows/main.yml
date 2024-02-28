@@ -70,7 +70,7 @@ jobs:
           cmake --install ${{ env.CRYSFML_BUILD }}
 
       - name: Download PyCrysFML (develop branch)
-        run: git clone --single-branch --branch develop https://code.ill.fr/scientific-software/pycrysfml08.git ${{ env.PYCRYSFML_REPO }}
+        run: git clone --single-branch https://code.ill.fr/scientific-software/pycrysfml08.git ${{ env.PYCRYSFML_REPO }}
 
       - name: Build PyCrysFML modules one by one (Linux/macos)
         if: runner.os == 'Linux' || runner.os == 'macOS'
