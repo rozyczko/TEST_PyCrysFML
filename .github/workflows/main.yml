@@ -94,6 +94,9 @@ jobs:
 
       - name: Make PyCrysFML python wheel
         run: |
+          # show system path
+          echo '### echo ${{ env.GITHUB_PATH }}'
+          python --version
           python -m pip install build
           echo '### touch ${{ env.PYCRYSFML_DIST }}/${{ env.DIST_PACKAGE_NAME }}/__init__.py'
           touch ${{ env.PYCRYSFML_DIST }}/${{ env.DIST_PACKAGE_NAME }}/__init__.py
