@@ -14,7 +14,7 @@ jobs:
       matrix:
         os: [ubuntu-22.04]
         build_system: [cmake]  # [cmake, fpm]
-        compiler: [ifort]  # [gfortran, ifort]
+        compiler: [ifort, ifx]  # [gfortran, ifort]
 
     steps:
       - name: Check-out repository
@@ -130,7 +130,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: pycrysfml08.whl
-          path: ${{ env.PYCRYSFML_WHEEL }}\\*.whl
+          path: ${{ env.PYCRYSFML_WHEEL }}/*.whl
 
       - name: Install PyCrysFML from local wheel (with dev extras)
         run: |
