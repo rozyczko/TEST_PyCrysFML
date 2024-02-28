@@ -25,10 +25,6 @@ jobs:
         with:
             python-version: 3.11
 
-      - name: Set up nmake environment
-        if: runner.os == 'windows'
-        uses: ilammy/msvc-dev-cmd@v1
-
       - name: Upgrade PIP
         run: python -m pip install --upgrade pip
 
@@ -50,18 +46,10 @@ jobs:
           echo "CRYSFML_DIST=${{ env.PROJECTS_DIR }}/${{ env.CRYSFML_PROJECT }}_dist" >> $GITHUB_ENV
           echo "PYCRYSFML_DIST=${{ env.PROJECTS_DIR }}/${{ env.PYCRYSFML_PROJECT }}_dist" >> $GITHUB_ENV
           echo "PYCRYSFML_WHEEL=${{ env.PROJECTS_DIR }}/${{ env.PYCRYSFML_PROJECT }}_wheel" >> $GITHUB_ENV
-          if [[ '${{ runner.os }}' == 'macOS' ]]; then
-            echo "LIBPYTHON=-L/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/config-3.11-darwin -lpython3.11" >> $GITHUB_ENV
-            echo "MACOSX_DEPLOYMENT_TARGET=$(sw_vers -productVersion)" >> $GITHUB_ENV  # needed because of `brew reinstall gcc`
-          fi
           if [[ '${{ runner.os }}' == 'Linux' && '${{ matrix.compiler }}' == 'ifort' ]]; then
             echo "COMPILER_OPTIONS=-fpp -fPIC" >> $GITHUB_ENV
           elif [[ '${{ matrix.compiler }}' == 'gfortran' ]]; then
             echo "COMPILER_OPTIONS=-cpp -std=f2008 -ffree-line-length-none -fPIC" >> $GITHUB_ENV
-          fi
-          if [[ '${{ runner.os }}' == 'Windows' ]]; then
-            echo "LIBPYTHON=${{ env.Python_ROOT_DIR }}\\libs\\python311.lib" >> $GITHUB_ENV
-            echo "COMPILER_OPTIONS= -std=f2008 -ffree-line-length-none -fPIC" >> $GITHUB_ENV
           fi
 
       - name: Install OS-specific dependences (Linux + ifort)
