@@ -50,35 +50,11 @@ jobs:
           echo "CRYSFML_DIST=${{ env.PROJECTS_DIR }}/${{ env.CRYSFML_PROJECT }}_dist" >> $GITHUB_ENV
           echo "PYCRYSFML_DIST=${{ env.PROJECTS_DIR }}/${{ env.PYCRYSFML_PROJECT }}_dist" >> $GITHUB_ENV
           echo "PYCRYSFML_WHEEL=${{ env.PROJECTS_DIR }}/${{ env.PYCRYSFML_PROJECT }}_wheel" >> $GITHUB_ENV
-          if [[ '${{ runner.os }}' == 'Linux' && '${{ matrix.compiler }}' == 'ifort' ]]; then
+          if [[ '${{ runner.os }}' == 'Linux' && '${{ matrix.compiler }}' == 'ifx' ]]; then
             echo "COMPILER_OPTIONS=-fpp -fPIC" >> $GITHUB_ENV
           elif [[ '${{ matrix.compiler }}' == 'gfortran' ]]; then
             echo "COMPILER_OPTIONS=-cpp -std=f2008 -ffree-line-length-none -fPIC" >> $GITHUB_ENV
           fi
-
-      - name: Install OS-specific dependences (Linux + ifort)
-        if: runner.os == 'Linux' && matrix.compiler == 'ifort'
-        run: |
-          curl -Lo- https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB | sudo gpg --dearmor -o /usr/share/keyrings/oneapi-archive-keyring.gpg
-          sudo tee /etc/apt/sources.list.d/oneAPI.list <<< "deb [signed-by=/usr/share/keyrings/oneapi-archive-keyring.gpg] https://apt.repos.intel.com/oneapi all main"
-          sudo apt-get update
-          sudo apt-get install intel-oneapi-compiler-fortran
-          source /opt/intel/oneapi/setvars.sh
-          printenv >> $GITHUB_ENV
-          ifort --version
-
-      #- name: Install OS-specific dependences (Linux + ifort)
-      #  if: runner.os == 'Linux' && matrix.compiler == 'ifort'
-      #  run: |
-      #    wget https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS-2023.PUB
-      #    sudo apt-key add GPG-PUB-KEY-INTEL-SW-PRODUCTS-2023.PUB
-      #    rm GPG-PUB-KEY-INTEL-SW-PRODUCTS-2023.PUB
-      #    echo "deb https://apt.repos.intel.com/oneapi all main" | sudo tee /etc/apt/sources.list.d/oneAPI.list
-      #    sudo apt-get update
-      #    sudo apt-get install intel-oneapi-compiler-fortran
-      #    source /opt/intel/oneapi/setvars.sh
-      #    printenv >> $GITHUB_ENV
-      #    ifort --version
 
       - name: Download CrysFML (fpm_macos branch)
         run: git clone --single-branch --branch fpm_macos https://code.ill.fr/rodriguez-carvajal/crysfml2008.git ${{ env.CRYSFML_REPO }}
