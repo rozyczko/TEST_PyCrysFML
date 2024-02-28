@@ -21,7 +21,8 @@ classifiers = [
 ]
 requires-python = ">=3.11"
 dependencies = [
-    "numpy"
+    "numpy",
+    "intel-fortran-rt"
 ]
 
 [project.optional-dependencies]
