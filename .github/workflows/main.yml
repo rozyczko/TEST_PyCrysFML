@@ -57,7 +57,7 @@ jobs:
           fi
 
       - name: Download CrysFML (fpm_macos branch)
-        run: git clone --single-branch --branch fpm_macos https://code.ill.fr/rodriguez-carvajal/crysfml2008.git ${{ env.CRYSFML_REPO }}
+        run: git clone --single-branch --branch powder_mod_fix https://code.ill.fr/rodriguez-carvajal/crysfml2008.git ${{ env.CRYSFML_REPO }}
 
       - name: Build CrysFML using CMake on Linux/macos
         if: matrix.build_system == 'cmake' && (runner.os == 'Linux' || runner.os == 'macOS')
