@@ -155,7 +155,6 @@ jobs:
           python3 -m pip install "${{ env.DIST_PACKAGE_NAME }}[dev]" --find-links=${{ env.PYCRYSFML_WHEEL }}
 
       - name: Upload wheel
-        if: matrix.compiler == 'gfortran'
         uses: actions/upload-artifact@v4
         with:
           name: ${{ env.FIXED_WHEEL_NAME }}
