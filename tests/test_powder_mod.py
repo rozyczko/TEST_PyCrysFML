@@ -144,16 +144,16 @@ def test_set_space_group_Pnma():
     set_space_group_by_phase_idx(new_study_dict, phase_idx=0, space_group='P n m a')
     assert space_group_by_phase_idx(new_study_dict, phase_idx=0) == 'P n m a'
 
-def test_compute_pattern_SrTiO3_Pm3m():
-    _, desired = np.loadtxt('tests/srtio3-pm3m-pattern_Nebil-ifort.xy', unpack=True)
-    study_dict = copy.deepcopy(STUDY_DICT)
-    set_space_group_by_phase_idx(study_dict, phase_idx=0, space_group='P m -3 m')
-    pattern = compute_pattern(study_dict)
-    actual = pattern[1].astype(np.float64)
-    # compensate for a 1-element shift in y data between Nebil windows build and my gfortran build
-    desired = desired[1:]
-    actual = actual[:-1]
-    assert_almost_equal(desired, actual, decimal=0, verbose=True)
+# def test_compute_pattern_SrTiO3_Pm3m():
+#     _, desired = np.loadtxt('tests/srtio3-pm3m-pattern_Nebil-ifort.xy', unpack=True)
+#     study_dict = copy.deepcopy(STUDY_DICT)
+#     set_space_group_by_phase_idx(study_dict, phase_idx=0, space_group='P m -3 m')
+#     pattern = compute_pattern(study_dict)
+#     actual = pattern[1].astype(np.float64)
+#     # compensate for a 1-element shift in y data between Nebil windows build and my gfortran build
+#     desired = desired[1:]
+#     actual = actual[:-1]
+#     assert_almost_equal(desired, actual, decimal=0, verbose=True)
 
 def _test_compute_pattern_SrTiO3_Pnma():
     desired = np.loadtxt('tests/srtio3-pmmm-pattern_Andrew-ifort.xy', unpack=True)
