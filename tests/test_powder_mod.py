@@ -124,9 +124,9 @@ def clean_after_compute(study_dict:dict):
 
 # Tests
 
-# def test_magnetic_data_txt_exists():
-#     fpath = os.path.abspath(os.path.join(os.path.dirname(powder_mod.__file__), 'Databases', 'magnetic_data.txt'))
-#     assert os.path.isfile(fpath) == True
+def test_magnetic_data_txt_exists():
+    fpath = os.path.abspath(os.path.join(os.path.dirname(powder_mod.__file__), 'Databases', 'magnetic_data.txt'))
+    assert os.path.isfile(fpath) == True
 
 def test_phase_name_SrTiO3():
     assert phase_name_by_idx(STUDY_DICT, phase_idx=0) == 'SrTiO3'
