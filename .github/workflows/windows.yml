@@ -46,7 +46,7 @@ jobs:
             echo "CMAKE_GENERATOR=-G 'NMake Makefiles'" >> $GITHUB_ENV
             echo "SITE_PACKAGES=c:/hostedtoolcache/windows/python/3.11.8/x64/lib/site-packages" >> $GITHUB_ENV
             echo "LIBPYTHON=${{ env.Python_ROOT_DIR }}\\libs\\python311.lib" >> $GITHUB_ENV
-            echo "COMPILER_OPTIONS=/c /fpp /nologo /Warn" >> $GITHUB_ENV
+            echo "COMPILER_OPTIONS=/c /fpp /nologo /Warn -DWIN32=ON" >> $GITHUB_ENV
           fi
 
       - name: Declare env variables (dependent)
